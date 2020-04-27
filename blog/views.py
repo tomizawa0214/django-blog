@@ -4,16 +4,8 @@ from blog.forms import PostForm
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.shortcuts import render, redirect, get_object_or_404
-
-class PostDeleteView(DeleteView):
-    model = Post
-    template_name = "blog/post_confirm_delete.html"
-    success_url = reverse_lazy('post_list')
-
-def post_publish(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    post.publish()
-    return redirect('post_detail', pk=pk)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class PostListView(ListView):
     model = Post
@@ -23,6 +15,24 @@ class PostListView(ListView):
         # return Post.objects.all()
         return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "blog/post_detail.html"
+
+class CreatePostView(CreateView):
+    login_url = '/login/'
+    template_name = "blog/post_form.html"
+    redirect_field_name = 'blog/post_detail.html'
+    form_class = PostForm
+    model = Post
+
+class PostUpdateView(UpdateView):
+    login_url = '/login/'
+    template_name = "blog/post_form.html"
+    redirect_field_name = 'blog/post_detail.html'
+    form_class = PostForm
+    model = Post
+
 class DraftListView(ListView):
     login_url = '/login/'
     template_name = 'blog/post_draft_list.html'
@@ -31,18 +41,13 @@ class DraftListView(ListView):
     def get_queryset(self):
         return Post.objects.filter(published_date__isnull=True).order_by('created_date')
 
-class PostDetailView(DetailView):
+class PostDeleteView(DeleteView):
     model = Post
-    template_name = "blog/post_detail.html"
+    template_name = "blog/post_confirm_delete.html"
+    success_url = reverse_lazy('post_list')
 
-class CreatePostView(CreateView):
-    template_name = "blog/post_form.html"
-    redirect_field_name = 'blog/post_detail.html'
-    form_class = PostForm
-    model = Post
-
-class PostUpdateView(UpdateView):
-    template_name = "blog/post_form.html"
-    redirect_field_name = 'blog/post_detail.html'
-    form_class = PostForm
-    model = Post
+@login_required
+def post_publish(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.publish()
+    return redirect('post_detail', pk=pk)
