@@ -7,4 +7,5 @@ urlpatterns = [
     path('post/new/', views.CreatePostView.as_view(), name='post_new'),
     path('post/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_edit'),
     path('drafts/', views.DraftListView.as_view(), name='post_draft_list'),
+    path('post/<int:pk>/publish/', views.post_publish, name='post_publish'),
 ]

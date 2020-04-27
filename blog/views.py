@@ -2,6 +2,12 @@ from django.utils import timezone
 from blog.models import Post
 from blog.forms import PostForm
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView)
+from django.shortcuts import render, redirect, get_object_or_404
+
+def post_publish(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.publish()
+    return redirect('post_detail', pk=pk)
 
 class PostListView(ListView):
     model = Post
