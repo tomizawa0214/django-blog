@@ -1,8 +1,14 @@
 from django.utils import timezone
 from blog.models import Post
 from blog.forms import PostForm
-from django.views.generic import (ListView, DetailView, CreateView, UpdateView)
+from django.urls import reverse_lazy
+from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.shortcuts import render, redirect, get_object_or_404
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = "blog/post_confirm_delete.html"
+    success_url = reverse_lazy('post_list')
 
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
