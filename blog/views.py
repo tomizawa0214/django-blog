@@ -1,6 +1,7 @@
 from django.utils import timezone
 from blog.models import Post
-from django.views.generic import (ListView, DetailView)
+from blog.forms import PostForm
+from django.views.generic import (ListView, DetailView, CreateView, UpdateView)
 
 class PostListView(ListView):
     model = Post
@@ -14,3 +15,15 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post_detail.html"
+
+class CreatePostView(CreateView):
+    template_name = "blog/post_form.html"
+    redirect_field_name = 'blog/post_detail.html'
+    form_class = PostForm
+    model = Post
+
+class PostUpdateView(UpdateView):
+    template_name = "blog/post_form.html"
+    redirect_field_name = 'blog/post_detail.html'
+    form_class = PostForm
+    model = Post
