@@ -8,9 +8,16 @@ class PostListView(ListView):
     template_name = "blog/post_list.html"
 
     def get_queryset(self):
-        return Post.objects.all()
-        # 後でこちらに変更
-        # return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_
+        # return Post.objects.all()
+        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+
+class DraftListView(ListView):
+    login_url = '/login/'
+    template_name = 'blog/post_draft_list.html'
+    model = Post
+
+    def get_queryset(self):
+        return Post.objects.filter(published_date__isnull=True).order_by('created_date')
 
 class PostDetailView(DetailView):
     model = Post
