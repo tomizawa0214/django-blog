@@ -24,7 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nun^e(sopgju21k9=q+e(oxh%)#a*kur+xe(^7e7l=)h)*t9z)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Falseに変更
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 ALLOWED_HOSTS = ['*']
 
@@ -157,4 +163,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
 IMAGE_URL = '/images/'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
+# Debug=Falseの時だけ実行する設定
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
