@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
+    paginate_by = 3
 
     def get_queryset(self):
         # return Post.objects.all()
