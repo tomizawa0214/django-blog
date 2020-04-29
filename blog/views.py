@@ -1,5 +1,5 @@
 from django.utils import timezone
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Category
 from blog.forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
@@ -81,3 +81,17 @@ def comment_remove(request, pk):
 
 class AboutView(TemplateView):
     template_name = 'page/about.html'
+
+class CategoryView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+
+    def get_queryset(self):
+        category = Category.objects.get(name=self.kwargs['category'])
+        queryset = Post.objects.order_by('-id').filter(category=category)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_key'] = self.kwargs['category']
+        return context

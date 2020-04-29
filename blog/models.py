@@ -3,11 +3,18 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images', blank=True, null=True)
+    image = models.ImageField(upload_to='images',blank=True, null=True)
     title = models.CharField(max_length=200)
     text = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
