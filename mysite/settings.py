@@ -24,11 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Falseに変更
 DEBUG = False
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 ALLOWED_HOSTS = ['*']
 
 LANGUAGE_CODE = 'ja'
@@ -129,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -144,9 +139,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 # SignUpした時に確認Emailアドレスを送信しない場合
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -160,7 +157,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
 IMAGE_URL = '/images/'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
 # Debug=Falseの時だけ実行する設定
 if not DEBUG:
     import django_heroku
