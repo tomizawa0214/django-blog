@@ -22,7 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Falseに変更
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -159,13 +160,13 @@ IMAGE_URL = '/images/'
 
 django_heroku.settings(locals())
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     pass
 
 # Debug=Falseの時だけ実行する設定
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-    SECRET_KEY = os.environ['SECRET_KEY']
+# if not DEBUG:
+#     import django_heroku
+#     django_heroku.settings(locals())
+#     SECRET_KEY = os.environ['SECRET_KEY']
