@@ -1,7 +1,8 @@
 body {
   font-size: 20px;
   color: #212529;
-  font-family: 'Lora', 'Times New Roman', serif;
+  /* font-family: 'Lora', 'Times New Roman', serif; */
+  font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
 p {
@@ -248,10 +249,10 @@ header.masthead .post-heading .subheading {
 }
 
 header.masthead .post-heading .meta {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
-  font-style: italic;
-  font-family: 'Lora', 'Times New Roman', serif;
+  /* font-style: italic; */
+  /* font-family: 'Lora', 'Times New Roman', serif; */
 }
 
 header.masthead .post-heading .meta a {
@@ -289,14 +290,14 @@ header.masthead .post-heading .meta a {
 
 .post-meta {
   font-size: 18px;
-  font-style: italic;
+  /* font-style: italic; */
   margin-top: 0;
   color: #868e96;
 }
 
 .comment-meta {
   font-size: 18px;
-  font-style: italic;
+  /* font-style: italic; */
   margin-top: 0;
   margin-bottom: 5px;
   color: #868e96;
@@ -340,12 +341,13 @@ footer .copyright {
 
 .btn {
   font-size: 14px;
-  font-weight: 800;
-  padding: 15px 25px;
+  padding: 10px 20px;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.btn i {
+  font-size: 18px;
+  margin-right: 3px;
 }
 
 .btn-primary {
@@ -363,6 +365,13 @@ footer .copyright {
   font-size: 16px;
   padding: 25px 35px;
 }
+
+/* hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1)
+} */
 
 .post-form textarea,
 .post-form input {
@@ -403,13 +412,16 @@ footer .copyright {
 }
 
 .category ul, ol {
-  background: #fcfcfc;
-  border-radius :3px;
-  border: solid 1px gray;
-  padding: 0.5em 0.5em 0.5em 2em;
+  padding: 0;
+  position: relative;
 }
 
 .category ul li, ol li {
+  color: #212529;
+  border-left: solid 6px #212529;
+  background: whitesmoke;
+  margin-bottom: 3px;
   line-height: 1.5;
-  padding: 0.5em 0;
+  padding: 0.5em;
+  list-style-type: none;
 }
