@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-9">
+<div class="col-12 col-md-9">
 	{% for post in post_list %}
 	<div class="post-preview">
 		<a href="{% url 'post_detail' pk=post.pk %}">
@@ -50,7 +50,7 @@
 		{% endif %}
 	</ul>
 </div>
-<div class="col-3">
+<div class="col-12 col-md-3">
 	<h5>カテゴリー</h5>
 	<div class="category">
 		<ul>
