@@ -366,16 +366,32 @@ footer .copyright {
   padding: 25px 35px;
 }
 
-/* hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, .1)
-} */
-
 .post-form textarea,
 .post-form input {
   width: 100%;
+}
+
+input:not(#id_remember), textarea {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input#id_image {
+  border: none;
+}
+
+select {
+  margin-left: 8px;
+  outline:none;
+  height: 40px;
+  padding: 5px;
+  border:1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 .login-form {
@@ -424,4 +440,21 @@ footer .copyright {
   line-height: 1.5;
   padding: 0.5em;
   list-style-type: none;
+}
+
+th, td {
+  border: none !important;
+}
+
+@media only screen and (max-width: 767px) {
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+  th {
+    padding: .75rem .75rem 0 !important;
+  }
+  td {
+    padding:  0 .75rem .75rem !important;
+  }
 }

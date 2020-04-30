@@ -12,7 +12,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="text-right">
-      <button type="submit" class="save btn btn-success" role="button">Save</button>
+      <button type="submit" class="save btn btn-success" role="button">
+        <i class="fas fa-paper-plane fa-fw"></i>Send
+      </button>
     </div>
   </form>
 </div>
