@@ -172,10 +172,9 @@ header.masthead {
   background-image: url('/static/img/title.png');
   margin-bottom: 50px;
   background-color: #868e96;
-  background-attachment: scroll;
   position: relative;
   background-size: cover;
-  background-position: right;
+  background-position: center;
 }
 
 header.masthead .overlay {
