@@ -103,6 +103,10 @@ img::-moz-selection {
   color: #343a40;
 }
 
+button:focus {
+  outline: none;
+}
+
 #mainNav .navbar-nav > li.nav-item > a {
   font-size: 12px;
   font-weight: 800;
@@ -167,11 +171,11 @@ img::-moz-selection {
 header.masthead {
   background-image: url('/static/img/title.png');
   margin-bottom: 50px;
-  /* background: no-repeat center center; */
   background-color: #868e96;
   background-attachment: scroll;
   position: relative;
   background-size: cover;
+  background-position: right;
 }
 
 header.masthead .overlay {
