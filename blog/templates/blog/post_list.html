@@ -19,7 +19,7 @@
 		<p class="post-meta">{{ post.published_date }}</p>
 		<p>{{ post.text|linebreaksbr|truncatechars:100 }}</p>
 		<a href="{% url 'post_detail' pk=post.pk %}">
-			<p class="post-comment">Comments: {{ post.approved_comments.count }}</p>
+			<p class="post-comment">コメント数: {{ post.approved_comments.count }}</p>
 		</a>
 	</div>
 	<hr>
@@ -28,7 +28,7 @@
 		{% if page_obj.has_previous %}
 			<li class="page-item">
 				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-					<span aria-hidden="true">Prev</span>
+					<span aria-hidden="true">前</span>
 				</a>
 			</li>
 		{% endif %}
@@ -44,7 +44,7 @@
 		{% if page_obj.has_next %}
 			<li class="page-item">
 				<a class="page-link" href="?page={{ page_obj.next_page_number }}">
-					<span aria-hidden="true">Next</span>
+					<span aria-hidden="true">次</span>
 				</a>
 			</li>
 		{% endif %}

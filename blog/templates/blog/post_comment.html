@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load widget_tweaks %}
 
 {% block header %}
 <div class="site-heading">
@@ -10,10 +11,29 @@
 <div class="col-12">
   <form method="POST" class="post-form">
     {% csrf_token %}
-    {{ form.as_p }}
+    <!-- {{ form.as_p }} -->
+    <div class="form-group row">
+      <label for="{{ form.author.id_for_label }}" class="col-lg-2 mb-1">投稿名</label>
+      <div class="col-lg-3">
+        {{ form.author|add_class:'form-control' }}
+        {% for error in form.author.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="{{ form.text.id_for_label }}" class="col-lg-2 mb-1">コメント本文</label>
+      <div class="col-lg-10">
+        {{ form.text|add_class:'form-control' }}
+        {% for error in form.text.errors %}
+          <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
     <div class="text-right">
       <button type="submit" class="save btn btn-success" role="button">
-        <i class="fas fa-paper-plane fa-fw"></i>Send
+        <i class="fas fa-paper-plane fa-fw"></i>送信
       </button>
     </div>
   </form>

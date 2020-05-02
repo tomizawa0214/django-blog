@@ -385,7 +385,6 @@ input#id_image {
 }
 
 select {
-  margin-left: 8px;
   outline:none;
   height: 40px;
   padding: 5px;
@@ -444,6 +443,11 @@ select {
 
 th, td {
   border: none !important;
+}
+
+.sign-up {
+  color: #0085A1;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 767px) {

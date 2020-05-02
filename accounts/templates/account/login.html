@@ -9,7 +9,7 @@
 {% block content %}
 <div class="col-12">
   <div class="row justify-content-center">
-    <p>アカウントをまだお持ちでなければ、こちらから<a href="{% url 'account_signup' %}">ユーザー登録</a>してください。</p>
+    <p>アカウントをまだお持ちでなければ、<a href="{% url 'account_signup' %}" class="sign-up">こちら</a>からユーザー登録してください。</p>
     <form method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
     <table class="table">{{ form.as_table }}</table>
@@ -20,7 +20,7 @@
       <a class="button secondaryAction" href="{% url 'account_reset_password' %}">パスワードをお忘れですか？</a>
       <p>
         <button type="submit" class="save btn btn-success" role="button">
-          <i class="fas fa-sign-in-alt fa-fw"></i>Login
+          <i class="fas fa-sign-in-alt fa-fw"></i>ログイン
         </button>
       </p>
     </div>
