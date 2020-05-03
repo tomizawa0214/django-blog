@@ -1,22 +1,47 @@
 from django import forms
 from .models import Post, Comment
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
-
-# class SignUpForm(UserCreationForm):
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     class Meta:
-#         model = User
-#         fields = ('username', 'email', 'password')
 
 class PostForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        # self.fields['title'].widget.attrs = {'placeholder': '必ずご入力ください。'}
+        self.fields['title'].required = False
+        self.fields['text'].required = False
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if len(title) == 0:
+            raise forms.ValidationError ('※タイトルを入力してください。')
+        return title
+
+    def clean_text(self):
+        text = self.cleaned_data['text']
+        if len(text) == 0:
+            raise forms.ValidationError ('※本文を入力してください。')
+        return title
+
     class Meta:
         model = Post
         fields = ('author', 'category', 'title', 'text', 'image')
-        # labels = {'author': '投稿者', 'category': 'カテゴリ', 'title': 'タイトル', 'text': '本文', 'image': 'ヘッダー画像'}
 
 class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['author'].required = False
+        self.fields['text'].required = False
+
+    def clean_author(self):
+        author = self.cleaned_data['author']
+        if len(author) == 0:
+            raise forms.ValidationError ('※名前を入力してください。')
+        return author
+
+    def clean_text(self):
+        text = self.cleaned_data['text']
+        if len(text) == 0:
+            raise forms.ValidationError ('※本文を入力してください。')
+        return text
+
     class Meta:
         model = Comment
         fields = ('author', 'text',)
-        # labels = {'author': '投稿名', 'text': '本文'}
