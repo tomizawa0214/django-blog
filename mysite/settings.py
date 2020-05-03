@@ -150,13 +150,15 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 # SignUpした時に確認Emailアドレスを送信しない場合
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
 # SignUpした時に確認Emailアドレスを送信する場合
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = 'gmail adress'
 # EMAIL_HOST_PASSWORD = 'gmail password'
 # EMAIL_USE_TLS = True
+# コンソールに表示してくれる設定
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
 IMAGE_URL = '/images/'
